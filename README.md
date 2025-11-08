@@ -1,72 +1,74 @@
+---
 
-# Qemu-Vortax V1.0
+# Qemu-Vortax V1.3
 
-Run any operating system (ISO, QCOW2, or compressed archives) directly on GitHub Actions with full graphical access via **XFCE, RDP, VNC, NoMachine, and Tailscale**.
+Run any operating system (ISO, QCOW2, or compressed archive) directly on **GitHub Actions** with full graphical access through **XFCE**, **RDP**, **VNC**, **NoMachine**, and **Tailscale**.
 
 ---
 
 ## ⚙️ Overview
 
-**Qemu-Vortax** is an educational and experimental GitHub Actions workflow that allows you to boot and interact with virtual machines in a full graphical desktop environment—right inside the GitHub cloud.  
-You can run Linux distributions, Windows builds, or custom disk images using ISO or QCOW2 formats.
+**Qemu-Vortax V1.3** is an educational and experimental workflow that boots complete virtual machines inside GitHub Actions using QEMU + XFCE.  
+You can run Linux distributions, Android builds, or pre-made cloud images (ISO/QCOW2) from any source.
 
-> 🧠 Educational use only.  
-> The author is **not responsible** for any banned accounts, data loss, or issues that may result from misuse.  
-> Use this workflow **at your own risk**.
+> 🧠 For educational use only.  
+> The author holds no responsibility for bans, data loss, or misuse.  
+> Use entirely **at your own risk**.
 
 ---
 
 ## 🚀 Features
 
-- 🧩 **Multi-OS boot support**: Run any `.iso`, `.qcow2`, or compressed archive (`.zip`, `.7z`, `.rar`, `.tar`, `.tar.gz`).
-- 💻 **Full GUI desktop (XFCE)** over RDP, VNC, and NoMachine.
-- 🛰️ **Secure networking via Tailscale** (your personal encrypted tunnel).
-- 📦 **Auto-decompression** for supported archive formats.
-- 🔁 **Multiple ready-to-use systems** (see below).
-- 🧰 **Dynamic boot type detection** – auto-handles ISO or QCOW2.
-- ⏱️ **Session timer** to control VM runtime.
-- 🧠 **Custom download sources** (MediaFire, Mega, direct links, etc.).
-- 🔒 **Isolated environment** – each run is sandboxed within GitHub Actions.
-- 🌐 **Cross-access from any device** – just copy the RDP/VNC/Tailscale link.
-- 💾 **Persistent storage simulation** (via temporary QCOW2 disks).
-- ⚡ **Fast launch** – VM boots in minutes.
+- 🧩 Supports `.iso`, `.qcow2`, `.zip`, `.7z`, `.rar`, `.tar`, `.tar.gz`
+- 💻 XFCE desktop accessible via RDP, VNC, or NoMachine  
+- 🛰️ Private encrypted tunnel through Tailscale or Ngrok
+- 📦 Automatic decompression for archives  
+- 🔁 Preset OS templates ready to boot  
+- 🧠 Auto-detects ISO vs QCOW2 modes  
+- ⏱️ Runtime limiter to control session length  
+- 🌐 Cross-device access (Windows, macOS, Linux, Android)  
+- 💾 Temporary QCOW2 storage for realistic disk simulation  
+- ⚡ Boots in under 4–5 minutes depending on image size  
 
 ---
 
-## 🛠️ How to Use
+## 🛠️ Usage Guide
 
-### 1. Fork this Repository
+### 1. Fork the repository  
+Click **Fork** on the project page.
 
-Click **Fork** on the top-right corner of this repo.
+### 2. Add your Auth Keys  
 
-### 2. Set the Tailscale Auth Key
+Go to **Settings → Secrets → Actions → New repository secret** and add the following:
 
-- Go to **Repository Settings → Secrets → Actions → New repository secret**.
-- Name it: `TAILSCALE_AUTHKEY`
-- Paste your Tailscale auth key value.
+- Name: `TAILSCALE_AUTHKEY`  
+  Value: your Tailscale key  
 
-### 3. Run the Workflow
+- Name: `NGROK_AUTH`  
+  Value: your Ngrok authtoken
 
+### 3. Run the workflow  
 1. Open the **Actions** tab.  
-2. Select **Qemu-Vortax V1.0**.  
-3. Click **Run workflow** and fill the following inputs:
+2. Select **Qemu-Vortax V1.3**.  
+3. Click **Run workflow** and fill the inputs.
 
 ---
 
-## 🧾 Workflow Inputs
+## 🧾 Inputs
 
 | Input | Description | Example |
 |-------|--------------|----------|
-| `system_choice` | Choose one of the pre-set OS options (see list below) | `ubuntu`, `mint`, `kali`, `deepin` |
-| `boot_mode` | Define boot type (`iso` or `qcow2`) | `iso` |
-| `source_url` | Custom link (ISO/QCOW2/Archive/MediaFire/Mega) | `https://example.com/myos.iso` |
-| `vm_name` | Custom name for your VM session | `my-linux` |
-| `runtime` | Session duration in minutes (after setup time) | `180` |
+| `system_choice` | Pre-set OS to run | `mint`, `ubuntu`, `kali`, `deepin` |
+| `boot_mode` | Boot type (`iso` or `qcow2`) | `iso` |
+| `source_url` | Custom URL (MediaFire, Mega, direct) | `https://example.com/os.iso` |
+| `vm_name` | VM name | `test-linux` |
+| `runtime` | Session duration in minutes | `350` |
+| `connection_method` | `tillscale` or `ngrok` | `tailscale` |
+| `connection_program` | `RDP`, `VNC`, `NoMachine` | `RDP` |
 
-> ⚠️ Important:
-> - When using custom links, make sure there are **no spaces** before or after any input.  
-> - Always match the **boot mode** with your file type (ISO/QCOW2).  
-> - For compressed archives, specify the correct type (ZIP, 7Z, RAR, TAR, TAR.GZ).
+> ⚠️ Do not include spaces in URLs.  
+> Match boot mode to file type.  
+> Archives are automatically extracted if supported.
 
 ---
 
@@ -91,50 +93,42 @@ Click **Fork** on the top-right corner of this repo.
 | `kali_qcow2` | QCOW2 | Kali Linux 2025.3 QEMU-ready build for penetration testing. | ![Kali](assets/kali.png) |
 ---
 
-## 🖥️ Connection Options
+## 🖥️ Connection Details
 
-After the VM starts, you’ll see connection details printed in the log:
-
-| Type | Address format | Use |
-|------|----------------|-----|
-| **RDP** | `ip:3389` | Connect via Remote Desktop (Windows/macOS/Linux). |
-| **VNC** | `ip:5900` | Use VNC Viewer or Remmina. |
-| **NoMachine** | auto-configured | High-speed remote access. |
-| **Tailscale** | secure tunnel | Access VM from any device privately. |
+| Type | Address | Tool |
+|------|----------|------|
+| RDP | `ip:3389` | Remote Desktop Client |
+| VNC | `ip:5900` | VNC Viewer / Remmina |
+| NoMachine | auto | Fast remote desktop |
+| Tailscale | secure | Private VPN-style access |
+| Ngrok | secure | Private tannal forward access |
+> When connected through RDP or NoMachine, open **Connect_VNC.sh** inside the desktop to view the QEMU display.
 
 ---
 
 ## ⚡ Performance Tips
 
-- Increase `runtime` for longer sessions.
-- Use `qcow2` format for faster boot after first run.
-- Use compressed archives only when needed (they add decompression time).
-- Always check file integrity before using a custom link.
-
----
-
-Licensed under the **MIT License**.  
-You can use, modify, and redistribute this workflow freely, but attribution is appreciated.
-
----
-
-## ⚠️ Disclaimer
-
-This project is provided for **educational and experimental use only**.  
-By running this workflow, you acknowledge that:
-- You are responsible for any actions performed.
-- The author is **not liable** for bans, account issues, or data loss.
-- Use it **at your own risk**.
+- Use `qcow2` for faster subsequent boots.  
+- Longer runtime = longer session before auto shutdown.  
+- Avoid huge compressed archives for quicker starts.  
+- Verify links before running custom sources.
 
 ---
 
 ## 🧠 Credits
 
 Developed by **Mohamed Ahmed Saad**  
-Project: **Qemu-Vortax V1.0**  
-Inspired by the goal of making virtual machine testing easier and faster in the cloud.
+Project: **Qemu-Vortax V1.3**  
+Goal: Simplify and accelerate virtual machine testing in the cloud.
 
 ---
 
+## ⚖️ License and Disclaimer
+
+Released under the **MIT License**.  
+You may use, modify, and redistribute with attribution.  
+
+This project is for educational and experimental purposes only.  
+By running it, you accept full responsibility for any consequences.
 
 ---
