@@ -4,7 +4,7 @@
 
 Run any operating system (ISO, QCOW2, or compressed archive) directly on **GitHub Actions** with full graphical access through **XFCE**, **RDP**, **VNC**, **NoMachine**, and **Tailscale**.
 
-![GitHub Workflow](https://camo.githubusercontent.com/b73bb058cd6cbb4a9a8655c0ca6f55908302fa9cb03e0999577e70f90687ba17/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f4769744875622d576f726b666c6f772d626c75653f7374796c653d666f722d7468652d6261646765266c6f676f3d676974687562266c6f676f436f6c6f723d7768697465)
+![Workflow Status](https://img.shields.io/github/actions/workflow/status/qemuvortax/qemuvortax/Qemu-Vortax.yml?style=plastic&logo=github&logoColor=white&color=00bfff)
 
 ![Forks](https://img.shields.io/github/forks/qemuvortax/qemuvortax?style=plastic&logo=github&logoColor=white&color=00bfff)
 
