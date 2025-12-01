@@ -11,7 +11,7 @@ Run any operating system (ISO, QCOW2, or compressed archive) directly on **GitHu
 
 ## ⚙️ Overview
 
-**Qemu-Vortax V 2.0** is an educational and experimental workflow that boots complete virtual machines inside GitHub Actions using QEMU + XFCE.
+**Qemu-Vortax V 2.1** is an educational and experimental workflow that boots complete virtual machines inside GitHub Actions using QEMU + XFCE.
 You can run Linux distributions, Android builds, or pre-made cloud images (ISO/QCOW2) from any source.
 
 > 🧠 For educational use only.
@@ -36,12 +36,13 @@ You can run Linux distributions, Android builds, or pre-made cloud images (ISO/Q
 - 📦 Automatic decompression for archives
 - 🔁 Preset OS templates ready to boot
 - 🧠 **IMPROVED:** Strict mode auto-detects based on `boot_mode` selection.
+- 💥 Adding virtio-win to identify the qcow2 disk when installing from a Windows ISO
 - 👾 Fixable choice between UEFI and BIOS
 - ⏱️ Runtime limiter to control session length
 - 🌐 Cross-device access (Windows, macOS, Linux, Android)
 - 💾 Temporary QCOW2 storage for realistic disk simulation
 - ⚡ Boots in under 4–5 minutes depending on image size
-
+- 🤚 Auto set run time to 325 min if user make it more only when the upload input is set to (yes)
 ---
 
 ## 🛠️ Usage Guide
@@ -62,12 +63,12 @@ Go to **Settings → Secrets → Actions → New repository secret** and add the
 
 ### 3. Run the workflow
 1. Open the **Actions** tab.
-2. Select **Qemu-Vortax V 2.0**.
+2. Select **Qemu-Vortax V 2.1**.
 3. Click **Run workflow** and fill the inputs.
 
 ---
 
-## 🧾 Inputs (Updated for V 2.0)
+## 🧾 Inputs (Updated for V 2.1)
 
 | Input | Description | Example |
 |-------|--------------|----------|
@@ -83,11 +84,15 @@ Go to **Settings → Secrets → Actions → New repository secret** and add the
 | **`upload_qcow2`** | **Upload QCOW2 file to Mega: yes or no** | `yes` |
 
 > ⚠️ Do not include spaces in URLs 
-> The system choice must match the selected `boot_mode` for correct to booting.
+>The system choice must match the selected `boot_mode` for correct to booting.
+
 > Archives are automatically extracted if supported.
+
 > If you intend to upload the file to Mega after completion, make sure you do not use more than 15 GB of data, as the compressed file may exceed Mega's 20 GB limit.
+
 > If you want to upload a file and you've added files that don't exceed one mega's limit, make sure you have enough time to compress and upload the file. it might take up to 45 minutes before the upload is complete. otherwise you can end up with none unuploaded file
 
+> don't boot pre-set qcow2 disk into UEFI boot mode unless you set-up it yourself 
 ---
 
 ## 🧩 Pre-set Systems
@@ -115,7 +120,7 @@ Go to **Settings → Secrets → Actions → New repository secret** and add the
 | `winVista` | QCOW2 | <img src="assets/winVista.png" alt="WinVista" width="240" height="240"> | Windows Vista with Aero interface and legacy support. |
 | `winXP` | QCOW2 | <img src="assets/winXP.png" alt="WinXP" width="240" height="240"> | Windows XP classic edition, lightweight and legacy software compatible. |
 
-> All previous releases (V1.3, V1.4, V1.5, V1.6, V1.7, V1.8, V1.9) are included as previous released in [Releases](https://github.com/qemuvortax/Qemu-Vortax/releases) folder.
+> All previous releases (V1.3, V1.4, V1.5, V1.6, V1.7, V1.8, V1.9, v2.0) are included as previous released in [Releases](https://github.com/qemuvortax/Qemu-Vortax/releases) folder.
 
 ---
 
@@ -139,7 +144,7 @@ Go to **Settings → Secrets → Actions → New repository secret** and add the
 - Longer runtime = longer session before auto shutdown.
 - Avoid huge compressed archives for quicker starts.
 - Verify links before running custom sources.
-- Make sure not to make run time more than 315 min if you want to upload you qcow2 file after finishing 
+- Make sure not to make run time more than 325 min if you want to upload you qcow2 file after finishing 
 
 ---
 
@@ -155,7 +160,7 @@ When `upload_qcow2` is set to `yes`, the following information will be provided 
 ## 🧠 Credits
 
 Developed by **Mohamed Ahmed Saad**
-Project: **Qemu-Vortax V 2.0**
+Project: **Qemu-Vortax V 2.1**
 Goal: Simplify, secure, and accelerate virtual machine testing in the cloud.
 
 ---
