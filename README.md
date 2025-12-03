@@ -136,6 +136,7 @@ Go to **Settings → Secrets → Actions → New repository secret** and add the
 
 > When connected through RDP or NoMachine, open **Connect_VNC.sh** inside the desktop to view the QEMU display.
 
+> If you are asked for a password while logging into the system, the password will be `me2008` except for Kali the user and pass is `kali`
 ---
 
 ## ⚡ Performance Tips
