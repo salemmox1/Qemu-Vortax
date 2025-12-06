@@ -2,12 +2,12 @@
 > Click on a name to jump directly 👇
 
 🖥️ Supported Windows Versions
-💿 **[Windows XP](#-windows-xp)** 
+ **[Windows XP](#-windows-xp)** 
 💿 **[Windows Vista](#-windows-vista)** 
 💿 **[Windows 7](#-windows-7)** 
 💿 **[Windows 8.1](#-windows-81)** 
 💿 **[Windows 10](#-windows-10)** 
-💿 **[Windows 11](#-windows-11)** 
+💿 **[Windows 11](#-windows-11)** 💿 
 
 ---
 
