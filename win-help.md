@@ -7,7 +7,7 @@
 💿 **[Windows 7](#-windows-7)** 
 💿 **[Windows 8.1](#-windows-81)** 
 💿 **[Windows 10](#-windows-10)** 
-💿 **[Windows 11](#-windows-11)** 💿 
+💿 **[Windows 11](#-windows-11)** 💿
 
 ---
 
@@ -77,9 +77,7 @@ https://dotnet.microsoft.com/en-us/download/dotnet-framework/thank-you/net35-sp1
 ```text
 https://raw.githubusercontent.com/massgravel/Microsoft-Activation-Scripts/refs/heads/master/MAS/All-In-One-Version-KL/MAS_AIO.cmd
 ```
-4. Run script → Choose:
-
-3 → TSForge 1 → Activate Windows
+4. Run script (as admin)→ Choose: 3 → TSForge 1 → Activate Windows
 
 ---
 
@@ -112,7 +110,7 @@ http://win32subsystem.live/supermium/legacy/
 ```text
 https://raw.githubusercontent.com/massgravel/Microsoft-Activation-Scripts/refs/heads/master/MAS/All-In-One-Version-KL/MAS_AIO.cmd
 ```
-2. Run script (as admin)→ Choose:3 → TSForge 1 → Activate Windows
+2. Run script (as admin)→ Choose: 3 → TSForge 1 → Activate Windows
 
 ---
 
@@ -145,7 +143,7 @@ http://win32subsystem.live/supermium/legacy/
 ```text
 https://raw.githubusercontent.com/massgravel/Microsoft-Activation-Scripts/refs/heads/master/MAS/All-In-One-Version-KL/MAS_AIO.cmd
 ```
-2. Run script (as admin)→ Choose:3 → TSForge 1 → Activate Windows
+2. Run script (as admin)→ Choose: 3 → TSForge 1 → Activate Windows
 
 
 # 🪟 Windows 10
@@ -186,7 +184,7 @@ http://win32subsystem.live/supermium/legacy/
 ```text
 https://raw.githubusercontent.com/massgravel/Microsoft-Activation-Scripts/refs/heads/master/MAS/All-In-One-Version-KL/MAS_AIO.cmd
 ```
-2. Run script (as admin)→ Choose:3 → TSForge 1 → Activate Windows
+2. Run script (as admin)→ Choose: 3 → TSForge 1 → Activate Windows
 
 ---
 
