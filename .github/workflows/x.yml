@@ -1,4 +1,4 @@
-name: Build External WinPwnage
+name: Build and Upload WinPwnage
 
 on:
   workflow_dispatch:
@@ -16,26 +16,33 @@ jobs:
         cd WinPwnage
         pip install pyinstaller
 
-    - name: Build Tool
+    - name: Build Tool to EXE
       run: |
         cd WinPwnage
         pyinstaller --onefile main.py
 
-    - name: Compress with Password (To Bypass AV)
+    - name: Compress File (Bypass Basic Scanners)
       shell: powershell
       run: |
-        # ضغط الملف بكلمة سر '123' لتجنب الفحص التلقائي
+        # ضغط الملف لتقليل فرص كشفه أثناء الرفع
         cd WinPwnage/dist/
         Compress-Archive -Path main.exe -DestinationPath patch_update.zip
 
-    - name: Upload to Gofile (Asia Pacific - Singapore)
+    - name: Upload to Gofile
       shell: bash
       run: |
-        # استخدام الرابط الإقليمي لسنغافورة لضمان الاستقرار
-        ENDPOINT="upload-ap-sgp.gofile.io"
         FILE_PATH="WinPwnage/dist/patch_update.zip"
         
-        echo "Uploading $FILE_PATH to $ENDPOINT..."
+        echo "Starting upload to Gofile via: https://upload.gofile.io/uploadfile"
         
-        # الرفع والحصول على الرابط
-        curl -v -F "file=@${FILE_PATH}" "https://${ENDPOINT}/contents/uploadfile"
+        # تنفيذ عملية الرفع وحفظ النتيجة في متغير
+        response=$(curl -s -F "file=@${FILE_PATH}" "https://upload.gofile.io/uploadfile")
+        
+        # طباعة النتيجة كاملة للتأكد
+        echo "Server Response: $response"
+        
+        # استخراج رابط التحميل النهائي (Download Page) لسهولة الوصول
+        download_url=$(echo $response | grep -oP '(?<="downloadPage":")[^"]*')
+        echo "--------------------------------------------------"
+        echo "DONE! Your download link is: $download_url"
+        echo "--------------------------------------------------"
