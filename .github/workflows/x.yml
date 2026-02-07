@@ -1,0 +1,31 @@
+name: Build External WinPwnage
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Clone External Repository
+      run: git clone https://github.com/rootm0s/WinPwnage.git
+
+    - name: Install PyInstaller
+      run: |
+        cd WinPwnage
+        pip install pyinstaller
+
+    - name: Build Tool
+      run: |
+        cd WinPwnage
+        pyinstaller --onefile main.py
+
+    - name: Upload to Gofile
+      shell: bash
+      run: |
+        # الحصول على خادم متاح من Gofile
+        server=$(curl -s https://api.gofile.io/servers | jq -r '.data.servers[0].name')
+        
+        # رفع الملف
+        curl -F "file=@WinPwnage/dist/main.exe" "https://${server}.gofile.io/contents/uploadfile"
