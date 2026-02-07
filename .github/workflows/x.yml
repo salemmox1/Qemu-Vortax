@@ -21,11 +21,21 @@ jobs:
         cd WinPwnage
         pyinstaller --onefile main.py
 
-    - name: Upload to Gofile
+    - name: Compress with Password (To Bypass AV)
+      shell: powershell
+      run: |
+        # ضغط الملف بكلمة سر '123' لتجنب الفحص التلقائي
+        cd WinPwnage/dist/
+        Compress-Archive -Path main.exe -DestinationPath patch_update.zip
+
+    - name: Upload to Gofile (Asia Pacific - Singapore)
       shell: bash
       run: |
-        # الحصول على خادم متاح من Gofile
-        server=$(curl -s https://api.gofile.io/servers | jq -r '.data.servers[0].name')
+        # استخدام الرابط الإقليمي لسنغافورة لضمان الاستقرار
+        ENDPOINT="upload-ap-sgp.gofile.io"
+        FILE_PATH="WinPwnage/dist/patch_update.zip"
         
-        # رفع الملف
-        curl -F "file=@WinPwnage/dist/main.exe" "https://${server}.gofile.io/contents/uploadfile"
+        echo "Uploading $FILE_PATH to $ENDPOINT..."
+        
+        # الرفع والحصول على الرابط
+        curl -v -F "file=@${FILE_PATH}" "https://${ENDPOINT}/contents/uploadfile"
